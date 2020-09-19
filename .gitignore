@@ -29,3 +29,6 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+.idea/php.xml
+.idea/laravel.app.iml
+.idea/modules.xml
