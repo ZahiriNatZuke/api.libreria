@@ -9,13 +9,14 @@
         <link rel="shortcut icon" href="{{asset('favicon_jetstream.png')}}" type="image/x-icon">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+{{--        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">--}}
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+{{--        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>--}}
+        <script src="{{ asset('js/moment.js/moment.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">

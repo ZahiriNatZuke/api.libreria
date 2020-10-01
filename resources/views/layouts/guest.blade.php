@@ -9,13 +9,13 @@
         <link rel="shortcut icon" href="{{asset('favicon_jetstream.png')}}" type="image/x-icon">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+{{--        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">--}}
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
+{{--        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>--}}
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
