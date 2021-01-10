@@ -42,7 +42,6 @@ class DefectuosoController extends Controller
     public function store(Request $request, Libro $libro)
     {
         $validator = Validator::make($request->all(), [
-            'motivo' => 'required|string',
             'cantidad' => 'required|numeric',
         ]);
 

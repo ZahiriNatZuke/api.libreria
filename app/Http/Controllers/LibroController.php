@@ -6,6 +6,7 @@ use App\Models\Editorial;
 use App\Models\Genero;
 use App\Models\Libro;
 use App\Rules\arrayGendersValid;
+use App\Rules\editorialValid;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -46,16 +47,21 @@ class LibroController extends Controller
         $libro = new Libro();
 
         $libro->fill($request->all());
-        $libro->fill([
-            'editorial_id' => Editorial::query()->where('editorial', $request->get('editorial'))->first()->id
-        ]);
+        if ($request->get('editorial')){
+            $libro->fill([
+                'editorial_id' => Editorial::query()
+                    ->where('editorial', $request->get('editorial'))->first()->id
+            ]);
+        }
 
-        $array = explode(',', $request->get('generos'));
         $libro->save();
 
-        foreach ($array as $item) {
-            $temp = Genero::query()->where('genero', trim($item))->first();
-            $libro->generos()->toggle($temp);
+        if ($request->get('generos')) {
+            $array = explode(',', $request->get('generos'));
+            foreach ($array as $item) {
+                $temp = Genero::query()->where('genero', trim($item))->first();
+                $libro->generos()->toggle($temp);
+            }
         }
 
         return response()->json([
@@ -131,13 +137,13 @@ class LibroController extends Controller
     {
         return Validator::make($values, [
             'titulo' => 'required|string',
-            'autor' => 'string',
-            'anno' => 'numeric',
-            'generos' => ['string', new arrayGendersValid],
-            'editorial' => 'string|exists:editoriales',
+            'autor' => 'nullable|string',
+            'anno' => 'nullable|numeric',
+            'generos' => ['nullable', new arrayGendersValid],
+            'editorial' => ['nullable', new editorialValid],
             'precio' => 'required|numeric',
             'cantidad' => 'required|numeric',
-            'categoria' => ['string', Rule::in(['Población', 'Ediciones Matanzas', 'Revistas', 'EGREM', 'Misceláneas'])],
+            'categoria' => ['nullable', 'string', Rule::in(['Población', 'Ediciones Matanzas', 'Revistas', 'EGREM', 'Misceláneas'])],
         ]);
     }
 }

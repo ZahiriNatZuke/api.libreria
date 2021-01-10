@@ -16,7 +16,7 @@ class CreateDefectuososTable extends Migration
         Schema::create('defectuosos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('libro_id');
-            $table->string('motivo');
+            $table->string('motivo')->nullable();
             $table->integer('cantidad');
             $table->float('precio');
             $table->float('importe')->storedAs('cantidad * precio')->nullable();

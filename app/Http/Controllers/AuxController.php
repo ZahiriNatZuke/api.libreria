@@ -19,7 +19,7 @@ class AuxController extends Controller
         return response()->json([
             'libros' => Libro::query()
                 ->where('cantidad', '>', 0)
-                ->whereYear('created_at', '<=', now()->year - 5)
+                ->where('anno', '<=', now()->year - 5)
                 ->get()
         ], 200);
     }
