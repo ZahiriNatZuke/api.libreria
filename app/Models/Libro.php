@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Libro extends Model
@@ -61,7 +64,7 @@ class Libro extends Model
     {
         parent::boot();
         static::created(function (Libro $libro) {
-            $libro->actualizaciones()->create([
+            $libro->registros()->create([
                 'accion' => 'Entrada',
                 'cantidad' => $libro->cantidad,
                 'precio' => $libro->precio
@@ -69,48 +72,42 @@ class Libro extends Model
         });
     }
 
-    public function generos()
+    public function generos(): BelongsToMany
     {
         return $this->belongsToMany(Genero::class);
     }
 
-    public function editorial()
+    public function editorial(): BelongsTo
     {
         return $this->belongsTo(Editorial::class);
     }
 
-    public function actualizaciones()
+    public function registros(): HasMany
     {
-        return $this->hasMany(Actualizacion::class)->orderBy('created_at', 'ASC');
+        return $this->hasMany(Registros::class)->orderBy('created_at', 'ASC');
     }
 
-    public function defectuosos()
+    public function defectuosos(): HasMany
     {
         return $this->hasMany(Defectuoso::class)
             ->orderBy('created_at', 'ASC');
     }
 
-    public function donaciones()
+    public function donaciones(): HasMany
     {
         return $this->hasMany(Donacion::class)
             ->orderBy('created_at', 'ASC');
     }
 
-    public function rebajas()
+    public function rebajas(): HasMany
     {
         return $this->hasMany(Rebaja::class)
             ->orderBy('created_at', 'DESC');
     }
 
-    public function traslados()
+    public function traslados(): HasMany
     {
         return $this->hasMany(Traslado::class)
-            ->orderBy('created_at', 'ASC');
-    }
-
-    public function ventaTransferencias()
-    {
-        return $this->hasMany(VentaTransferencia::class)
             ->orderBy('created_at', 'ASC');
     }
 }

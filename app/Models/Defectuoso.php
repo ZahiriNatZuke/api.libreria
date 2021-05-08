@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class Defectuoso extends Model
@@ -56,7 +57,7 @@ class Defectuoso extends Model
         //
     ];
 
-    public function libro()
+    public function libro(): BelongsTo
     {
         return $this->belongsTo(Libro::class);
     }

@@ -9,7 +9,6 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\RebajaController;
 use App\Http\Controllers\TrasladoController;
-use App\Http\Controllers\VentaTransferenciaController;
 use App\Models\Editorial;
 use App\Models\Genero;
 use Illuminate\Http\Request;
@@ -104,12 +103,6 @@ Route::group(['prefix' => 'traslado'], function () {
     Route::get('/index', [TrasladoController::class, 'index'])->name('index.traslado.api');
     Route::get('/show/{libro}', [TrasladoController::class, 'show'])->name('show.traslado.api');
     Route::post('/store/{libro}', [TrasladoController::class, 'store'])->name('store.traslado.api');
-});
-
-Route::group(['prefix' => 'venta'], function () {
-    Route::get('/index', [VentaTransferenciaController::class, 'index'])->name('index.venta.api');
-    Route::get('/show/{libro}', [VentaTransferenciaController::class, 'show'])->name('show.venta.api');
-    Route::post('/store/{libro}', [VentaTransferenciaController::class, 'store'])->name('store.venta.api');
 });
 
 Route::group(['prefix' => 'aux'], function () {

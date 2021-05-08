@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
-class Actualizacion extends Model
+class Registros extends Model
 {
     use Notifiable;
 
@@ -14,7 +15,7 @@ class Actualizacion extends Model
      *
      * @var string
      */
-    protected $table = 'actualizaciones';
+    protected $table = 'registros';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +23,7 @@ class Actualizacion extends Model
      * @var array
      */
     protected $fillable = [
-        'libro_id', 'accion', 'precio', 'cantidad', 'importe',
+        'libro_id', 'accion', 'tipo', 'precio', 'cantidad', 'importe',
     ];
 
     /**
@@ -47,7 +48,7 @@ class Actualizacion extends Model
         'importe' => 'decimal:2',
     ];
 
-    public function libro()
+    public function libro(): BelongsTo
     {
         return $this->belongsTo(Libro::class);
     }

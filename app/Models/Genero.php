@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Genero extends Model
@@ -44,7 +45,7 @@ class Genero extends Model
         'updated_at' => 'datetime:Y-m-d',
     ];
 
-    public function libro()
+    public function libro(): HasMany
     {
         return $this->hasMany(Libro::class);
     }

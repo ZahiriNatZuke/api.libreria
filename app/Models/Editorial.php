@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Editorial extends Model
@@ -44,7 +45,7 @@ class Editorial extends Model
         'updated_at' => 'datetime:Y-m-d',
     ];
 
-    public function libros()
+    public function libros(): HasMany
     {
         return $this->hasMany(Libro::class);
     }
